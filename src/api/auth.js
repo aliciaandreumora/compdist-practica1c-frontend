@@ -1,42 +1,38 @@
 import axios from "axios"
-import {useAuthStore} from "@/stores/store.js";
+import { useAuthStore } from "@/stores/store.js";
 
+// 🔹 Cliente axios apuntando al backend de Render
 const api = axios.create({
-    baseURL: "http://localhost:5000",
-    withCredentials: true, // allow sending/receiving cookies
+  baseURL: "https://compdist-practica1c-backend-1.onrender.com",
+  withCredentials: true, // permitir envío/recepción de cookies JWT
 })
 
 export async function login(username, password) {
-    console.log("Login", username, password);
-    const res = await api.post("/login", { username, password })
-    useAuthStore().login_user(username)
-    return res.data
+  console.log("Login", username, password);
+  const res = await api.post("/login", { username, password })
+  useAuthStore().login_user(username)
+  return res.data
 }
 
 export async function logout() {
-    const res = await api.post("/logout")
-    useAuthStore().logout_user()
-    return res.data
+  const res = await api.post("/logout")
+  useAuthStore().logout_user()
+  return res.data
 }
 
 export async function register(username, password) {
-    const res = await api.post("/register", { username, password })
-    useAuthStore().login_user(username)
-    return res.data
+  const res = await api.post("/register", { username, password })
+  useAuthStore().login_user(username)
+  return res.data
 }
 
-//export async function getProtected() {
-//    const res = await api.get("/protected")
-//    return res.data
-//}
-
 export async function getCurrentUser() {
-    try {
-        const res = await api.get("/me")
-        return res.data.user
-    } catch {
-        return null
-    }
+  try {
+    const res = await api.get("/me")
+    return res.data.user
+  } catch {
+    return null
+  }
 }
 
 export default api
