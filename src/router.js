@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from 'vue-router'
+import { createWebHashHistory, createRouter } from 'vue-router'
 import { useAuthStore } from "@/stores/store.js"
 
 import LoginView from './views/LoginView.vue'
@@ -18,7 +18,8 @@ const routes = [
 ]
 
 export const router = createRouter({
-    history: createWebHistory(),
+    // 👇 CAMBIO IMPORTANTE
+    history: createWebHashHistory(),
     routes,
 })
 
