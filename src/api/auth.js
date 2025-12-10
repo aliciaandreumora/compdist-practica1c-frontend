@@ -1,10 +1,9 @@
 import axios from "axios"
 import { useAuthStore } from "@/stores/store.js";
 
-// 🔹 Cliente axios apuntando al backend de Render
 const api = axios.create({
   baseURL: "https://compdist-practica1c-backend-1.onrender.com",
-  withCredentials: true, // permitir envío/recepción de cookies JWT
+  withCredentials: true, // allow sending/receiving cookies
 })
 
 export async function login(username, password) {
